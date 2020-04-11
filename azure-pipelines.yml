@@ -15,5 +15,8 @@ variables:
   buildConfiguration: 'Release'
 
 steps:
+- script: echo $(MyRunNumber) # display MyRunNumber
+- script: echo $(Build.BuildNumber) #display Run Number
+
 - script: dotnet build --configuration $(buildConfiguration)
   displayName: 'dotnet build $(buildConfiguration)'
