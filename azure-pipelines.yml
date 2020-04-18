@@ -16,8 +16,8 @@ steps:
 # - script: echo $(MyRunNumber) # display MyRunNumber
 # - script: echo $(Build.BuildNumber) #display Run Number
 
-- script: dotnet restore --configuration $(buildConfiguration)
-  displayName: 'restore $(buildConfiguration)'
+- script: dotnet restore 
+  displayName: 'restore...'
 
 - script: dotnet build --configuration $(buildConfiguration)
   displayName: 'build $(buildConfiguration)'
