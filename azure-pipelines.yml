@@ -30,6 +30,15 @@ steps:
     PathtoPublish: '$(Build.ArtifactStagingDirectory)'
     ArtifactName: 'ContainerAPI'
     publishLocation: 'Container'
+
+- task: AzureRmWebAppDeployment@4
+  inputs:
+    ConnectionType: 'AzureRM'
+    azureSubscription: 'CNeff-Primary(2d918367-9b82-47de-802a-d8275e07edbf)'
+    appType: 'webApp'
+    WebAppName: 'sample-devops'
+    packageForLinux: '$(System.DefaultWorkingDirectory)/**/*.zip'
+
     
 
 
