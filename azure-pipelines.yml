@@ -16,17 +16,23 @@ steps:
 # - script: echo $(MyRunNumber) # display MyRunNumber
 # - script: echo $(Build.BuildNumber) #display Run Number
 
-- script: dotnet build --configuration $(buildConfiguration)
-  displayName: 'dotnet build $(buildConfiguration)'
+- script: dotnet restore --configuration $(buildConfiguration)
+  displayName: 'restore $(buildConfiguration)'
 
-- task: AzureRmWebAppDeployment@4
+- script: dotnet build --configuration $(buildConfiguration)
+  displayName: 'build $(buildConfiguration)'
+
+- script: dotnet publish --configuration $(buildConfiguration) --output $(Build.ArtifactStagingDirectory)
+  displayName: 'publish $(buildConfiguration)'
+
+- task: PublishBuildArtifacts@1
   inputs:
-    ConnectionType: 'AzureRM'
-    azureSubscription: 'CNeff-Primary(2d918367-9b82-47de-802a-d8275e07edbf)'
-    appType: 'webApp'
-    WebAppName: 'sample-devops'
-    packageForLinux: '$(System.DefaultWorkingDirectory)/**/*.zip'
-    enableCustomDeployment: true
-    DeploymentType: 'webDeploy'
+    PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+    ArtifactName: 'ContainerAPI'
+    publishLocation: 'Container'
+    
+
+
+
 
   
