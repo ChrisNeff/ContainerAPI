@@ -13,8 +13,19 @@ variables:
 
 
 steps:
-# - script: echo $(MyRunNumber) # display MyRunNumber
-# - script: echo $(Build.BuildNumber) #display Run Number
+
+- task: DotNetCoreCLI@2 
+  displayName: Install NBGV tool
+  inputs:
+    command: custom
+    custom: tool
+    arguments: install --tool-path . nbgv
+ 
+- script: nbgv cloud
+  displayName: Set Version
+
+- script: echo 'My run number ' $(MyRunNumber) # display MyRunNumber
+- script: echo 'Build number ' $(Build.BuildNumber) #display Run Number
 
 - script: dotnet restore 
   displayName: 'restore...'
