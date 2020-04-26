@@ -56,3 +56,10 @@ steps:
   inputs:
     staticTagName: 'master-$(Build.BuildNumber)'
   
+- task: GitTag@5
+  inputs:
+    workingdir: '$(SYSTEM.DEFAULTWORKINGDIRECTORY)'
+    tagUser: 'AzureDevOps'
+    tagEmail: 'christopher.c.neff@gmail.com'
+    tag: '$(build.buildNumber)'
+    forceTagCreation: true
