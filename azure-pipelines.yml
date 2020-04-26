@@ -52,14 +52,15 @@ steps:
     WebAppName: 'sample-devops'
     packageForLinux: '$(Build.ArtifactStagingDirectory)'
 
-- task: git-tag-on-release-task@9
-  inputs:
-    staticTagName: 'master-$(Build.BuildNumber)'
+# Remove for now
+#- task: git-tag-on-release-task@9
+#  inputs:
+#    staticTagName: 'master-$(Build.BuildNumber)'
   
 - task: GitTag@5
   inputs:
     workingdir: '$(SYSTEM.DEFAULTWORKINGDIRECTORY)'
-    tagUser: 'AzureDevOps'
+    tagUser: 'ChrisNeff'
     tagEmail: 'christopher.c.neff@gmail.com'
     tag: '$(build.buildNumber)'
     forceTagCreation: true
