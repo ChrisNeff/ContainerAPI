@@ -12,7 +12,6 @@ trigger:
 variables:
   buildConfiguration: 'Release'
 
-
 steps:
 
 - task: DotNetCoreCLI@2 
@@ -44,13 +43,14 @@ steps:
     ArtifactName: 'ContainerAPI'
     publishLocation: 'Container'
 
-- task: AzureRmWebAppDeployment@4
-  inputs:
-    ConnectionType: 'AzureRM'
-    azureSubscription: 'CNeff-Primary(2d918367-9b82-47de-802a-d8275e07edbf)'
-    appType: 'webApp'
-    WebAppName: 'sample-devops'
-    packageForLinux: '$(Build.ArtifactStagingDirectory)'
+# Remove baked in deployment task
+#- task: AzureRmWebAppDeployment@4
+#  inputs:
+#    ConnectionType: 'AzureRM'
+#    azureSubscription: 'CNeff-Primary(2d918367-9b82-47de-802a-d8275e07edbf)'
+#    appType: 'webApp'
+#    WebAppName: 'sample-devops'
+#    packageForLinux: '$(Build.ArtifactStagingDirectory)'
 
 # Remove for now
 #- task: git-tag-on-release-task@9
