@@ -12,7 +12,7 @@ namespace ContainerAPI.Controllers
         [HttpGet]
         public ActionResult<IEnumerable<string>> Get()
         {
-            return new string[] { "value CN", "value More CN" };
+            return new string[] { "value CN", "value More CN", "Next Jan 18" };
         }
 
         [HttpGet("current-date")]
